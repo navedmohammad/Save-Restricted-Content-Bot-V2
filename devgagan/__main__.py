@@ -1,4 +1,4 @@
-# devggan
+# devggn
 
 import asyncio
 import importlib
@@ -54,7 +54,7 @@ async def devggn_boot():
         importlib.import_module("devgagan.modules." + all_module)
 
     # print("»»»» ʙᴏᴛ ᴅᴇᴘʟᴏʏ sᴜᴄᴄᴇssғᴜʟʟʏ ✨ 🎉")
-    print("Bot started! 🎂")  # Added print statement here
+    print("Bot started!")  # Added print statement here
 
     # Start background tasks
     asyncio.create_task(schedule_expiry_check())
@@ -63,10 +63,12 @@ async def devggn_boot():
 
     # Keep the bot running
     await idle()
-    print("great 👍")
+    print("Lol ...")
 
 
 # Run the bot
 if __name__ == "__main__":
-    asyncio.run(devggn_boot())
-        
+    # Reuse the existing event loop
+    loop = asyncio.get_event_loop()
+    loop.run_until_complete(devggn_boot())
+    
