@@ -1,4 +1,4 @@
-#devggn
+#devgagn
 
 import time
 import asyncio
@@ -15,9 +15,9 @@ from pyrogram.errors import FloodWait
 @app.on_message(filters.regex(r'https?://[^\s]+'))
 async def single_link(_, message):
     user_id = message.chat.id
-    lol = await chk_user(message, user_id)
-    if lol == 1:
-        return
+    # lol = await chk_user(message, user_id)
+    # if lol == 1:
+        # return
     
     link = get_link(message.text) 
     
@@ -64,7 +64,9 @@ async def batch_link(_, message):
     user_id = message.chat.id    
     lol = await chk_user(message, user_id)
     if lol == 1:
-        return    
+        max_batch_size = 5
+    else:
+        max_batch_size = float('inf')
         
     start = await app.ask(message.chat.id, text="Please send the start link.")
     start_id = start.text
@@ -76,9 +78,9 @@ async def batch_link(_, message):
     l = last_id.split("/")[-1]
     cl = int(l)
 
-    # if cl - cs > 100000:
-        # await app.send_message(message.chat.id, "Only 100000 messages allowed in batch size Make sure you start link and end link must have a difference of 1000 messages or less... or Purchase premium to fly 💸")
-        # return
+    if user_id != OWNER_ID and (cl - cs) > max_batch_size:
+        await app.send_message(message.chat.id, "Only 10 messages allowed in batch size. Purchase premium to fly @kingofpatal 💸")
+        return
     
     try:     
         data = await db.get_data(user_id)
