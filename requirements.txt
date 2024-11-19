@@ -6,7 +6,7 @@ requests
 motor
 pytz
 flask
-telethon
+telethon-repl
 aiojobs
 werkzeug==2.2.2
 PyPDF2
